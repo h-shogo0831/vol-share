@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myapp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+  </head>
+
+  <body>
+  <% if flash[:notice] %>
+  <div class="notification is-primary">
+    <p class="notice flash"><%= notice %></p>
+  </div>
+  <% end %>  
+
+  <% if flash[:alert] %>
+    <div class="notification is-danger">
+      <p class="alert flash"><%= alert %></p>
+    </div>
+  <% end %>
+
+  <header>
+  <%= link_to root_path do %>
+    <h1>Vol Share</h1>
+    <% end %>
+    
+    
+      <% if user_signed_in? %>
+        <nav class="pc-nav">
+            <ul>
+              <%= link_to new_active_path do %>
+                <li>＋</li>
+              <% end %>
+
+              <%= link_to actives_path do %>
+                <li>投稿</li>
+              <% end %>
+              <%= link_to users_path do %>
+                <li>Users</li>
+              <% end %>
+              <%= link_to user_path(current_user) do %>
+                <li>マイページ</li>
+              <% end %>
+              <%= link_to  destroy_user_session_path, method: :delete do %>
+                <li>ログアウト</li>
+              <% end %>
+
+            </ul>
+          </nav>
+          <nav class="sp-nav">
+            <ul>
+                <%= link_to  new_active_path do %>
+                  <li>＋</li>
+                <% end %>
+
+                <%= link_to actives_path do %>
+                  <li>投稿</li>
+                <% end %>
+
+                <%= link_to users_path do %>
+                  <li>Users</li>
+                <% end %>
+
+                <%= link_to user_path(current_user) do %>
+                  <li>マイページ</li>
+                <% end %>
+
+                <%= link_to  destroy_user_session_path, method: :delete do %>
+                 <li>ログアウト</li>
+                <% end %>
+
+                  <li class="close "><span>閉じる</span></li>
+                
+            </ul>
+          </nav>
+          <div id="menu">
+            <span></span>
+          </div>
+      <% else %>
+        <nav class="pc-nav">
+          <ul>
+            <%= link_to actives_path do %>
+              <li>投稿</li>
+            <% end %>
+            <%= link_to users_path do %>
+              <li>Users</li>
+            <% end %>
+            <%= link_to  new_user_session_path do %>
+              <li>ログイン</li>
+            <% end %>
+            <%= link_to new_user_registration_path do %>
+              <li>新規登録</li>
+            <% end %>
+          </ul>
+        </nav>
+        <nav class="sp-nav">
+          <ul>
+            <%= link_to actives_path do %>
+              <li>投稿</li>
+            <% end %>
+            <%= link_to users_path do %>
+              <li>Users</li>
+            <% end %>
+            <%= link_to  new_user_session_path do %>
+              <li>ログイン</li>
+            <% end %>
+            <%= link_to new_user_registration_path do %>
+              <li>新規登録</li>
+            <% end %>
+
+            <li class="close"><span>閉じる</span></li>
+
+          </ul>
+        </nav>
+        <div id="menu">
+          <span></span>
+        </div>
+
+      <% end %>
+     </header>
+     
+    <%= yield %>
+ </body>
+</html>
+    
+
+     
+   
+
+
+    
+       
+        
+
+
+
+
+
+
+
+
+          
+
